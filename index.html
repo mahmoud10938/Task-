@@ -6,51 +6,76 @@
     <title>Pilot Club</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Oswald:wght@400&family=Pacifico&display=swap" rel="stylesheet">
     <style>
+        /* إعدادات الصفحة الرئيسية */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            /* خلفية الموقع باللون الأسود */
             background-color: #000;
-            height: 100vh;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            color: white; /* اللون الأبيض للنصوص */
+            height: 100vh;
         }
 
         /* تصميم اسم الموقع */
         .site-name-container {
-            font-family: 'Pacifico', cursive; /* استخدام خط Pacifico */
-            color: #f39c12; /* اللون البرتقالي اللامع */
+            font-family: 'Pacifico', cursive;
+            color: #f39c12;
             font-size: 60px;
             font-weight: bold;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 5px;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* تأثير الظل للنص */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
 
+        /* تنسيق الحاوية العامة */
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 400px; /* جعل العرض مناسب لجميع الأجهزة */
             margin: auto;
-            overflow: hidden;
+            padding: 20px;
         }
 
+        /* تصميم البطاقات الخاصة بالحساب */
         .card {
-            background-color: white;
+            background-color: #2c3e50;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             margin: 20px 0;
             text-align: center;
+            color: #ecf0f1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
+        /* تنسيق الحقول المدخلة */
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #7f8c8d;
+            background-color: #34495e;
+            color: white;
+            font-size: 14px;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #f39c12;
+            background-color: #2c3e50;
+        }
+
+        /* تنسيق الأزرار */
         button {
-            background-color: #333;
+            background-color: #f39c12;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -62,23 +87,10 @@
         }
 
         button:hover {
-            background-color: #555;
+            background-color: #e67e22;
         }
 
-        .input-field {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            font-size: 16px;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: #f39c12;
-        }
-
+        /* الأيقونات الاجتماعية */
         .social-icons {
             position: fixed;
             bottom: 20px;
@@ -94,6 +106,7 @@
         .social-icons img {
             width: 50px;
             height: 50px;
+            filter: invert(100%);
         }
 
         .whatsapp {
@@ -108,7 +121,7 @@
 <body>
 
     <header>
-        <!-- اسم الموقع بدون شعار وبخط جديد -->
+        <!-- اسم الموقع -->
         <div class="site-name-container">
             Pilot Club
         </div>
@@ -117,6 +130,7 @@
     <div class="container">
         <!-- Card for Create Account -->
         <div class="card">
+            <h2>Create Account</h2>
             <input type="text" class="input-field" placeholder="ID">
             <input type="password" class="input-field" placeholder="Password">
             <input type="password" class="input-field" placeholder="Confirm Password">
@@ -125,6 +139,7 @@
 
         <!-- Card for Login Account -->
         <div class="card">
+            <h2>Login Account</h2>
             <input type="text" class="input-field" placeholder="ID">
             <input type="password" class="input-field" placeholder="Password">
             <button>Login Account</button>
@@ -142,12 +157,7 @@
         <a href="https://wa.me/yourphonenumber" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/WhatsApp.svg" alt="WhatsApp" style="filter: invert(100%);">
         </a>
-    </div> 
-   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pilot Club</title>
-    <link rel="stylesheet" href="styl.css"> <!-- تأكد من اسم الملف ومكانه -->
-</head>
+    </div>
+
 </body>
 </html>
