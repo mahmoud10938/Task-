@@ -62,6 +62,20 @@
             background-color: #555;
         }
 
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #ff6347;
+        }
+
         .social-icons {
             position: fixed;
             bottom: 20px;
@@ -98,11 +112,34 @@
     </header>
 
     <div class="container">
+        <!-- Card for Create Account -->
         <div class="card">
-            <h2>Welcome to Pilot Club</h2>
+            <h2>Create Account</h2>
             
-            <!-- فقط الأزرار لإنشاء الحساب وتسجيل الدخول -->
+            <!-- ID Field -->
+            <input type="text" class="input-field" placeholder="ID">
+            
+            <!-- Password Field -->
+            <input type="password" class="input-field" placeholder="Password">
+            
+            <!-- Confirm Password Field -->
+            <input type="password" class="input-field" placeholder="Confirm Password">
+            
+            <!-- Create Account Button -->
             <button>Create Account</button>
+        </div>
+
+        <!-- Card for Login Account -->
+        <div class="card">
+            <h2>Login Account</h2>
+            
+            <!-- ID Field -->
+            <input type="text" class="input-field" placeholder="ID">
+            
+            <!-- Password Field -->
+            <input type="password" class="input-field" placeholder="Password">
+            
+            <!-- Login Button -->
             <button>Login Account</button>
         </div>
     </div>
