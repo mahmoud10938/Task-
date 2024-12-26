@@ -48,12 +48,6 @@
             text-align: center;
         }
 
-        .card img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
         button {
             background-color: #333;
             color: white;
@@ -63,25 +57,11 @@
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
+            margin-top: 10px;
         }
 
         button:hover {
             background-color: #555;
-        }
-
-        .form-container {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .form-container input {
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
         }
 
     </style>
@@ -89,25 +69,18 @@
 <body>
 
     <header>
-        <!-- إضافة الصورة في أعلى الصفحة -->
-        <img src="https://images.app.goo.gl/iqkQebqWfMksNvg19" alt="Header Image">
+        <!-- إضافة الصورة في أعلى الصفحة (يمكنك إضافة رابط الصورة المباشر هنا) -->
+        <img src="PUT-YOUR-IMAGE-LINK-HERE" alt="Header Image"> <!-- استبدل الرابط هنا -->
         <h1>Pilot Club</h1>
     </header>
 
     <div class="container">
         <div class="card">
             <h2>Welcome to Pilot Club</h2>
-            <p>Welcome! Please create an account or log in.</p>
             
-            <!-- نموذج إنشاء حساب مع حقل confirm password -->
-            <div class="form-container">
-                <input type="text" placeholder="Username">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <input type="password" placeholder="Confirm Password"> <!-- Confirm Password -->
-                <button>Create Account</button>
-                <button>Login Account</button>
-            </div>
+            <!-- فقط الأزرار لإنشاء الحساب وتسجيل الدخول -->
+            <button>Create Account</button>
+            <button>Login Account</button>
         </div>
     </div>
 
