@@ -1,55 +1,254 @@
 <!DOCTYPE html>
-<html lang="en-US" translate="no">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PeakArena</title>
-    <!-- CSS داخل الصفحة -->
+    <title>Pilot Club</title>
     <style>
+        /* CSS Styles */
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
         }
         h1 {
+            margin: 0;
+        }
+        nav a {
+            margin: 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .intro {
             text-align: center;
             margin-top: 50px;
-            color: #444;
         }
-        p {
+        footer {
             text-align: center;
-            font-size: 18px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+        }
+        .game .box {
+            width: 50px;
+            height: 50px;
+            background-color: #eee;
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .game button {
             margin-top: 20px;
+        }
+        .user-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container input, .form-container select, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <noscript><strong>Please enable JavaScript to continue.</strong></noscript>
-    <div id="app">
-        <h1>Welcome to PeakArena</h1>
-        <p>This is a basic version of the website.</p>
+
+<!-- Page 1: Home -->
+<div id="home">
+    <header>
+        <h1>Pilot Club</h1>
+        <nav>
+            <a href="javascript:showPage('login')">Login</a> | <a href="javascript:showPage('signup')">Create Account</a>
+        </nav>
+    </header>
+    <div class="social-icons">
+        <a href="https://wa.me" target="_blank">WhatsApp</a>
+        <a href="https://t.me" target="_blank">Telegram</a>
     </div>
-    <!-- JavaScript داخل الصفحة -->
-    <script>
-        console.log('Page loaded successfully!');
-        // يمكنك إضافة المزيد من الأكواد هنا
-    </script>
-    <!DOCTYPE html>
-<html lang="en-US">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PeakArena</title>
-    <!-- ربط ملف CSS -->
-    <link rel="stylesheet" href="https://your-link-to/index.css">
-</head>
-<body>
-    <h1>Welcome to PeakArena</h1>
-    <p>This site is styled using an external CSS file.</p>
-</body>
-</html>
+    <div class="intro">
+        <p>Welcome to Pilot Club!</p>
+        <p>Create an account or login to start your journey.</p>
+    </div>
+    <footer>
+        <p>&copy; 2024 Pilot Club</p>
+    </footer>
+</div>
+
+<!-- Page 2: Create Account -->
+<div id="signup" style="display: none;">
+    <header>
+        <h1>Create Account</h1>
+    </header>
+    <div class="form-container">
+        <form action="javascript:showPage('dashboard')" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Create Account</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 Pilot Club</p>
+    </footer>
+</div>
+
+<!-- Page 3: Login -->
+<div id="login" style="display: none;">
+    <header>
+        <h1>Login</h1>
+    </header>
+    <div class="form-container">
+        <form action="javascript:showPage('dashboard')" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 Pilot Club</p>
+    </footer>
+</div>
+
+<!-- Page 4: Dashboard (After Login/Signup) -->
+<div id="dashboard" style="display: none;">
+    <header>
+        <h1>Welcome, User!</h1>
+    </header>
+    <div class="user-info">
+        <p>User ID: 12345</p>
+        <p>Balance: $1000</p>
+    </div>
+    <nav>
+        <a href="javascript:showPage('deposit')">Deposit</a> | <a href="javascript:showPage('withdraw')">Withdraw</a> | <a href="javascript:showPage('game')">Game</a>
+    </nav>
+    <footer>
+        <p>&copy; 2024 Pilot Club</p>
+    </footer>
+</div>
+
+<!-- Page 5: Deposit -->
+<div id="deposit" style="display: none;">
+    <header>
+        <h1>Deposit Funds</h1>
+    </header>
+    <div class="form-container">
+        <form action="javascript:showPage('dashboard')" method="POST">
+            <label for="deposit-amount">Amount to Deposit:</label>
+            <input type="number" id="deposit-amount" name="deposit-amount" required>
+            
+            <label for="wallet">Select Wallet:</label>
+            <select id="wallet" name="wallet">
+                <option value="paypal">PayPal</option>
+                <option value="crypto">Cryptocurrency</option>
+            </select>
+            
+            <button type="submit">Deposit</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 Pilot Club</p>
+    </footer>
+</div>
+
+<!-- Page 6: Withdraw -->
+<div id="withdraw" style="display: none;">
+    <header>
+        <h1>Withdraw Funds</h1>
+    </header>
+    <div class="form-container">
+        <form action="javascript:showPage('dashboard')" method="POST">
+            <label for="withdraw-amount">Amount to Withdraw:</label>
+            <input type="number" id="withdraw-amount" name="withdraw-amount" required>
+            
+            <label for="withdraw-method">Select Withdrawal Method:</label>
+            <select id="withdraw-method" name="withdraw-method">
+                <option value="paypal">PayPal</option>
+                <option value="bank">Bank Transfer</option>
+            </select>
+            
+            <button type="submit">Withdraw</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 Pilot Club</p>
+    </footer>
+</div>
+
+<!-- Page 7: Game -->
+<div id="game" style="display: none;">
+    <header>
+        <h1>Game Time!</h1>
+    </header>
+    <div class="game">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <label for="bet-amount">Place your bet:</label>
+    <input type="number" id="bet-amount" name="bet-amount">
+    
+    <button onclick="playGame()">Play Game</button>
+    
+    <footer>
+        <p>&copy; 2024 Pilot Club</p>
+    </footer>
+</div>
+
+<script>
+    function showPage(pageId) {
+        // Hide all pages
+        const pages = document.querySelectorAll("div[id]");
+        pages.forEach(page => page.style.display = "none");
+
+        // Show the selected page
+        document.getElementById(pageId).style.display = "block";
+    }
+
+    function playGame() {
+        let boxes = document.querySelectorAll(".box");
+        let randomBox = Math.floor(Math.random() * 4);
+        boxes[randomBox].innerText = "⚽";
+        let betAmount = document.getElementById("bet-amount").value;
+        if (randomBox === 0) {
+            alert("You Win! Double your bet: $" + betAmount * 2);
+        } else {
+            alert("You Lose! Try again.");
+        }
+    }
+
+    // Show the home page by default
+    showPage('home');
+</script>
+
 </body>
 </html>
