@@ -8,9 +8,14 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            /* تغيير الخلفية إلى مزيج من الألوان */
+            background: linear-gradient(to right, #f8b400, #ff6347, #1e90ff);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         header {
@@ -32,7 +37,8 @@
         }
 
         .container {
-            width: 80%;
+            width: 100%;
+            max-width: 400px;  /* تحديد أقصى عرض للمحتوى */
             margin: auto;
             overflow: hidden;
         }
@@ -114,32 +120,18 @@
     <div class="container">
         <!-- Card for Create Account -->
         <div class="card">
-            <h2>Create Account</h2>
-            
-            <!-- ID Field -->
+            <!-- فقط الكلمات أسفل الحقول -->
             <input type="text" class="input-field" placeholder="ID">
-            
-            <!-- Password Field -->
             <input type="password" class="input-field" placeholder="Password">
-            
-            <!-- Confirm Password Field -->
             <input type="password" class="input-field" placeholder="Confirm Password">
-            
-            <!-- Create Account Button -->
             <button>Create Account</button>
         </div>
 
         <!-- Card for Login Account -->
         <div class="card">
-            <h2>Login Account</h2>
-            
-            <!-- ID Field -->
+            <!-- فقط الكلمات أسفل الحقول -->
             <input type="text" class="input-field" placeholder="ID">
-            
-            <!-- Password Field -->
             <input type="password" class="input-field" placeholder="Password">
-            
-            <!-- Login Button -->
             <button>Login Account</button>
         </div>
     </div>
