@@ -10,8 +10,7 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            /* خلفية الموقع باللون الأسود */
-            background-color: #000;
+            background-color: #000; /* خلفية الموقع باللون الأسود */
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,53 +23,41 @@
         .site-name-container {
             font-family: 'Pacifico', cursive; /* استخدام خط Pacifico */
             color: #f39c12; /* اللون البرتقالي اللامع */
-            font-size: 60px;
+            font-size: 80px; /* زيادة حجم الخط */
             font-weight: bold;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 5px;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* تأثير الظل للنص */
         }
 
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 450px; /* تعديل العرض ليتناسب مع الأجهزة المختلفة */
             margin: auto;
-            overflow: hidden;
+            padding: 20px;
         }
 
         .card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #2c3e50; /* تغيير اللون الخلفي للبطاقات */
+            padding: 25px;
+            border-radius: 10px; /* جعل الحواف أكثر انحناء */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             margin: 20px 0;
             text-align: center;
+            color: #ecf0f1; /* تغيير النص ليكون فاتحًا */
         }
 
-        button {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #555;
-        }
-
+        /* تنسيق الحقول المدخلة */
         .input-field {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             border-radius: 5px;
             border: 1px solid #ddd;
+            background-color: #34495e;
+            color: white;
             font-size: 16px;
         }
 
@@ -79,6 +66,25 @@
             border-color: #f39c12;
         }
 
+        /* تصميم الأزرار */
+        button {
+            background-color: #f39c12; /* استخدام اللون البرتقالي */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e67e22; /* تأثير عند المرور على الزر */
+        }
+
+        /* تصميم أيقونات التواصل الاجتماعي */
         .social-icons {
             position: fixed;
             bottom: 20px;
@@ -94,8 +100,14 @@
         .social-icons img {
             width: 50px;
             height: 50px;
+            transition: transform 0.3s ease;
         }
 
+        .social-icons img:hover {
+            transform: scale(1.1); /* تكبير الأيقونات عند التمرير عليها */
+        }
+
+        /* تصميم أيقونات WhatsApp */
         .whatsapp {
             position: fixed;
             bottom: 20px;
@@ -103,6 +115,20 @@
             z-index: 9999;
         }
 
+        /* تحسين التصميم لعرض أفضل على الأجهزة الصغيرة */
+        @media (max-width: 600px) {
+            .site-name-container {
+                font-size: 50px; /* تقليل حجم الخط على الشاشات الصغيرة */
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
