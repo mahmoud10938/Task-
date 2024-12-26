@@ -28,7 +28,7 @@ body {
 /* تنسيق الحاوية العامة */
 .container {
     width: 100%;
-    max-width: 450px;
+    max-width: 350px; /* تقليل العرض إلى 350px لضمان أن المحتوى لا يزدحم */
     margin: auto;
     padding: 20px;
 }
@@ -36,7 +36,7 @@ body {
 /* تصميم البطاقات الخاصة بالحساب */
 .card {
     background-color: #2c3e50;
-    padding: 30px;
+    padding: 20px; /* تقليل الحشو داخل البطاقة */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 20px 0;
@@ -50,13 +50,13 @@ body {
 /* تنسيق الحقول المدخلة */
 .input-field {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
+    padding: 8px; /* تقليل الحشو داخل الحقول */
+    margin: 8px 0; /* تقليل المسافة بين الحقول */
     border-radius: 5px;
     border: 1px solid #7f8c8d;
     background-color: #34495e;
     color: white;
-    font-size: 16px;
+    font-size: 14px; /* تقليل حجم الخط داخل الحقول */
 }
 
 .input-field:focus {
@@ -70,8 +70,8 @@ button {
     background-color: #f39c12;
     color: white;
     border: none;
-    padding: 12px 20px;
-    font-size: 16px;
+    padding: 10px 20px; /* تقليل الحشو في الأزرار */
+    font-size: 14px; /* تقليل حجم الخط */
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
