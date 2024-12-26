@@ -25,12 +25,22 @@
         }
 
         h1 {
-            font-size: 40px;
+            font-size: 50px;
             font-weight: bold;
             background: linear-gradient(to right, #1e90ff, #ff6347);
             -webkit-background-clip: text;
             color: transparent;
             margin: 20px 0;
+        }
+
+        .happy-new-year {
+            font-size: 40px;
+            font-weight: bold;
+            color: #ff6347;
+            background: linear-gradient(to right, #1e90ff, #ff6347);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-top: 10px;
         }
 
         .container {
@@ -64,6 +74,20 @@
             background-color: #555;
         }
 
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .social-icons img {
+            width: 40px;
+            height: 40px;
+        }
+
     </style>
 </head>
 <body>
@@ -72,6 +96,7 @@
         <!-- إضافة الصورة في أعلى الصفحة (يمكنك إضافة رابط الصورة المباشر هنا) -->
         <img src="PUT-YOUR-IMAGE-LINK-HERE" alt="Header Image"> <!-- استبدل الرابط هنا -->
         <h1>Pilot Club</h1>
+        <p class="happy-new-year">Happy New Year!</p> <!-- كلمة Happy New Year -->
     </header>
 
     <div class="container">
@@ -81,6 +106,12 @@
             <!-- فقط الأزرار لإنشاء الحساب وتسجيل الدخول -->
             <button>Create Account</button>
             <button>Login Account</button>
+        </div>
+        
+        <!-- إضافة أيقونات التواصل الاجتماعي -->
+        <div class="social-icons">
+            <a href="https://wa.me/yourphonenumber" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/69/WhatsApp.svg" alt="WhatsApp"></a>
+            <a href="https://t.me/yourusername" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Telegram_logo.svg" alt="Telegram"></a>
         </div>
     </div>
 
