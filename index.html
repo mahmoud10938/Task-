@@ -3,46 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pilot Club</title>
+    <title>Crash Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            text-align: center;
         }
         header {
             background-color: #007BFF;
             color: white;
             padding: 20px;
-            text-align: center;
-            border-bottom: 3px solid #0056b3;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #007BFF;
-            color: white;
-            border-top: 3px solid #0056b3;
         }
         .container {
-            padding: 20px;
+            margin-top: 20px;
         }
-        .form-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
+        .game {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .game-screen {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            margin: 20px 0;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        input[type="text"], input[type="password"], input[type="number"] {
-            width: 100%;
+        .balance {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .input-box {
+            margin-bottom: 20px;
+        }
+        .input-box input {
             padding: 10px;
-            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 5px;
             border: 1px solid #ccc;
-            border-radius: 4px;
         }
         button {
-            background-color: #007BFF;
+            background-color: #28a745;
             color: white;
             padding: 10px 15px;
             border: none;
@@ -50,221 +57,138 @@
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #218838;
         }
-        .page {
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+            color: green;
+        }
+        footer {
+            padding: 20px;
+            background-color: #007BFF;
+            color: white;
+        }
+        .loading {
             display: none;
-        }
-        .active {
-            display: block;
-        }
-        .box {
-            width: 100px;
-            height: 100px;
-            margin: 5px;
-            background-color: #ccc;
-            display: inline-block;
-            text-align: center;
-            vertical-align: middle;
-            font-size: 30px;
-            border-radius: 8px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Page 1: Home -->
-    <div id="home" class="page active">
-        <header>
-            <h1>Pilot Club</h1>
-        </header>
-        <div class="container">
-            <button onclick="showPage('login')">Login</button>
-            <button onclick="showPage('signup')">Create Account</button>
-            <br><br>
-            <a href="https://wa.me/" target="_blank">WhatsApp</a> | 
-            <a href="https://t.me/" target="_blank">Telegram</a>
-        </div>
-        <footer>
-            <p>&copy; 2024 Pilot Club</p>
-        </footer>
+<header>
+    <h1>Crash Game</h1>
+</header>
+
+<div class="container">
+    <div class="balance">
+        <p>Your Balance: $<span id="balance">100</span></p>
     </div>
 
-    <!-- Page 2: Login -->
-    <div id="login" class="page">
-        <header>
-            <h1>Login</h1>
-        </header>
-        <div class="container">
-            <div class="form-container">
-                <form onsubmit="login(event)">
-                    <input type="text" id="login-username" placeholder="Username" required>
-                    <input type="password" id="login-password" placeholder="Password" required>
-                    <button type="submit">Login</button>
-                </form>
-            </div>
+    <div class="game">
+        <div class="game-screen">
+            <h2>Current Multiplier: <span id="multiplier">1.00x</span></h2>
+            <p>Place your bet and try to cash out before the crash!</p>
         </div>
-        <footer>
-            <p>&copy; 2024 Pilot Club</p>
-        </footer>
-    </div>
 
-    <!-- Page 3: Signup -->
-    <div id="signup" class="page">
-        <header>
-            <h1>Create Account</h1>
-        </header>
-        <div class="container">
-            <div class="form-container">
-                <form onsubmit="createAccount(event)">
-                    <input type="text" id="signup-username" placeholder="Username" required>
-                    <input type="password" id="signup-password" placeholder="Password" required>
-                    <button type="submit">Create Account</button>
-                </form>
-            </div>
+        <div class="input-box">
+            <label for="betAmount">Enter your bet amount: </label>
+            <input type="number" id="betAmount" min="1" value="10">
         </div>
-        <footer>
-            <p>&copy; 2024 Pilot Club</p>
-        </footer>
+
+        <button onclick="startGame()">Start Game</button>
+        <button id="cashOutButton" style="display: none;" onclick="cashOut()">Cash Out</button>
+
+        <div id="gameMessage" class="message"></div>
     </div>
+</div>
 
-    <!-- Page 4: Dashboard -->
-    <div id="dashboard" class="page">
-        <header>
-            <h1>Welcome, <span id="user-id">User</span></h1>
-        </header>
-        <div class="container">
-            <p>Balance: $<span id="balance">100</span></p>
-            <button onclick="showPage('deposit')">Deposit</button>
-            <button onclick="showPage('withdraw')">Withdraw</button>
-            <button onclick="showPage('game')">Play Game</button>
-        </div>
-        <footer>
-            <p>&copy; 2024 Pilot Club</p>
-        </footer>
-    </div>
+<footer>
+    <p>&copy; 2024 Crash Game</p>
+</footer>
 
-    <!-- Page 5: Deposit -->
-    <div id="deposit" class="page">
-        <header>
-            <h1>Deposit</h1>
-        </header>
-        <div class="container">
-            <div class="form-container">
-                <input type="number" id="deposit-amount" placeholder="Enter amount" required>
-                <button onclick="processDeposit()">Deposit</button>
-            </div>
-        </div>
-        <footer>
-            <p>&copy; 2024 Pilot Club</p>
-        </footer>
-    </div>
+<script>
+    let balance = 100;
+    let gameRunning = false;
+    let multiplier = 1;
+    let crashPoint = 0;
+    let betAmount = 0;
+    let interval = null;
 
-    <!-- Page 6: Withdraw -->
-    <div id="withdraw" class="page">
-        <header>
-            <h1>Withdraw</h1>
-        </header>
-        <div class="container">
-            <div class="form-container">
-                <input type="number" id="withdraw-amount" placeholder="Enter amount" required>
-                <button onclick="processWithdraw()">Withdraw</button>
-            </div>
-        </div>
-        <footer>
-            <p>&copy; 2024 Pilot Club</p>
-        </footer>
-    </div>
+    // Start the crash game
+    function startGame() {
+        if (gameRunning) return; // Prevent starting a new game while the current one is running
 
-    <!-- Page 7: Game -->
-    <div id="game" class="page">
-        <header>
-            <h1>Play the Game</h1>
-        </header>
-        <div class="container">
-            <div class="form-container">
-                <input type="number" id="bet-amount" placeholder="Enter your bet" required>
-                <div class="game-board">
-                    <div class="box" onclick="playGame(0)"></div>
-                    <div class="box" onclick="playGame(1)"></div>
-                    <div class="box" onclick="playGame(2)"></div>
-                    <div class="box" onclick="playGame(3)"></div>
-                </div>
-                <button onclick="playGame()">Play</button>
-            </div>
-        </div>
-        <footer>
-            <p>&copy; 2024 Pilot Club</p>
-        </footer>
-    </div>
+        const betInput = document.getElementById('betAmount');
+        betAmount = parseFloat(betInput.value);
 
-    <script>
-        let user = { id: "User123", balance: 100 };
-
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            // Show the page with the given ID
-            document.getElementById(pageId).classList.add('active');
+        if (betAmount > balance) {
+            document.getElementById('gameMessage').innerText = 'Insufficient balance!';
+            return;
         }
 
-        function login(event) {
-            event.preventDefault();
-            // Simulate login logic
-            user.id = document.getElementById('login-username').value;
-            showPage('dashboard');
-            document.getElementById('user-id').innerText = user.id;
-            document.getElementById('balance').innerText = user.balance;
-        }
+        balance -= betAmount;
+        document.getElementById('balance').innerText = balance;
 
-        function createAccount(event) {
-            event.preventDefault();
-            // Simulate account creation
-            user.id = document.getElementById('signup-username').value;
-            user.balance = 100;
-            showPage('dashboard');
-            document.getElementById('user-id').innerText = user.id;
-            document.getElementById('balance').innerText = user.balance;
-        }
+        gameRunning = true;
+        multiplier = 1;
+        crashPoint = Math.random() * (3 - 1) + 1; // Random crash point between 1 and 3
+        document.getElementById('gameMessage').innerText = '';
+        document.getElementById('cashOutButton').style.display = 'inline-block'; // Show the cash-out button
 
-        function processDeposit() {
-            let depositAmount = parseFloat(document.getElementById('deposit-amount').value);
-            user.balance += depositAmount;
-            alert('Deposit successful!');
-            document.getElementById('balance').innerText = user.balance;
-            showPage('dashboard');
-        }
+        runGame();
+    }
 
-        function processWithdraw() {
-            let withdrawAmount = parseFloat(document.getElementById('withdraw-amount').value);
-            if (withdrawAmount <= user.balance) {
-                user.balance -= withdrawAmount;
-                alert('Withdrawal successful!');
-                document.getElementById('balance').innerText = user.balance;
-                showPage('dashboard');
-            } else {
-                alert('Insufficient funds');
+    // Function to simulate the game's multiplier
+    function runGame() {
+        let elapsedTime = 0;
+        interval = setInterval(function () {
+            if (!gameRunning) return;
+
+            multiplier += 0.01; // Increase multiplier
+            elapsedTime += 0.1;
+
+            document.getElementById('multiplier').innerText = multiplier.toFixed(2) + 'x';
+
+            // Check if the game has crashed
+            if (multiplier >= crashPoint) {
+                clearInterval(interval);
+                endGame('crashed');
             }
+        }, 100);
+    }
+
+    // Function to simulate cashing out
+    function cashOut() {
+        if (!gameRunning) {
+            document.getElementById('gameMessage').innerText = 'You must start a game first!';
+            return;
         }
 
-        function playGame(boxIndex) {
-            let boxes = document.querySelectorAll('.box');
-            let randomBox = Math.floor(Math.random() * 4);
-            boxes[randomBox].innerText = "⚽";  // Place the ball
+        gameRunning = false;
+        const cashOutAmount = betAmount * multiplier;
+        balance += cashOutAmount;
+        document.getElementById('balance').innerText = balance.toFixed(2);
 
-            let betAmount = document.getElementById('bet-amount').value;
-            if (randomBox === boxIndex) {
-                alert('You Win! You won $' + betAmount * 2);
-            } else {
-                alert('You Lose! Try again.');
-            }
+        document.getElementById('gameMessage').innerText = You cashed out at ${multiplier.toFixed(2)}x! You earned $${(cashOutAmount - betAmount).toFixed(2)};
+
+        // Hide the cash-out button after the game ends
+        document.getElementById('cashOutButton').style.display = 'none';
+    }
+
+    // End the game when the crash happens
+    function endGame(status) {
+        if (status === 'crashed') {
+            document.getElementById('gameMessage').innerText = Game crashed at ${multiplier.toFixed(2)}x! You lost your bet.;
+        } else {
+            document.getElementById('gameMessage').innerText = You cashed out at ${multiplier.toFixed(2)}x! You won $${((betAmount * multiplier) - betAmount).toFixed(2)};
         }
-    </script>
 
-</body>
-</html>
-
+        // Hide the cash-out button after the game ends
+        document.getElementById('cashOutButton').style.display = 'none';
+    }
 </script>
 
 </body>
 </html>
+
