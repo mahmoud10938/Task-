@@ -13,10 +13,24 @@
         }
 
         header {
-            background-color: #333;
-            color: white;
-            padding: 20px;
             text-align: center;
+            margin-top: 20px;
+        }
+
+        header img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: bold;
+            background: linear-gradient(to right, #1e90ff, #ff6347);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin: 20px 0;
         }
 
         .container {
@@ -45,7 +59,7 @@
             color: white;
             border: none;
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 14px; /* smaller button text */
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
@@ -70,72 +84,32 @@
             border: 1px solid #ccc;
         }
 
-        .form-container button {
-            background-color: #28a745;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .form-container button:hover {
-            background-color: #218838;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-
-        .welcome-message {
-            text-align: center;
-            margin-top: 30px;
-        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Pilot Club</h1>
-</header>
+    <header>
+        <!-- إضافة الصورة في أعلى الصفحة -->
+        <img src="https://images.app.goo.gl/iqkQebqWfMksNvg19" alt="Header Image">
+        <h1>Pilot Club</h1>
+    </header>
 
-<div class="container">
-
-    <div class="welcome-message">
-        <h2>Welcome to Pilot Club!</h2>
-    </div>
-
-    <div class="card">
-        <h3>Create Account</h3>
-        <div class="form-container">
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
-            <button>Create Account</button>
+    <div class="container">
+        <div class="card">
+            <h2>Welcome to Pilot Club</h2>
+            <p>Welcome! Please create an account or log in.</p>
+            
+            <!-- نموذج إنشاء حساب مع حقل confirm password -->
+            <div class="form-container">
+                <input type="text" placeholder="Username">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Confirm Password"> <!-- Confirm Password -->
+                <button>Create Account</button>
+                <button>Login Account</button>
+            </div>
         </div>
     </div>
-
-    <div class="card">
-        <h3>Login Account</h3>
-        <div class="form-container">
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
-            <button>Login</button>
-        </div>
-    </div>
-
-    <div class="card">
-        <h3>Crash Game</h3>
-        <img src="https://via.placeholder.com/600x400?text=Crash+Game+Image" alt="Crash Game">
-    </div>
-
-</div>
-
-<footer>
-    <p>&copy; 2024 Pilot Club. All rights reserved.</p>
-</footer>
 
 </body>
 </html>
