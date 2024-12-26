@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilot Club</title>
     <style>
-        /* CSS Styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            color: #333;
             margin: 0;
             padding: 0;
         }
@@ -18,236 +16,254 @@
             color: white;
             padding: 20px;
             text-align: center;
-        }
-        h1 {
-            margin: 0;
-        }
-        nav a {
-            margin: 10px;
-            color: #007BFF;
-            text-decoration: none;
-        }
-        .social-icons a {
-            margin: 0 10px;
-            text-decoration: none;
-        }
-        .intro {
-            text-align: center;
-            margin-top: 50px;
+            border-bottom: 3px solid #0056b3;
         }
         footer {
             text-align: center;
             padding: 10px;
             background-color: #007BFF;
             color: white;
+            border-top: 3px solid #0056b3;
         }
-        .game .box {
-            width: 50px;
-            height: 50px;
-            background-color: #eee;
-            display: inline-block;
-            margin: 10px;
-            text-align: center;
-            line-height: 50px;
-        }
-        .game button {
-            margin-top: 20px;
-        }
-        .user-info {
-            text-align: center;
-            margin-top: 20px;
+        .container {
+            padding: 20px;
         }
         .form-container {
-            width: 300px;
-            margin: 0 auto;
+            background-color: white;
             padding: 20px;
-            background-color: #fff;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .form-container input, .form-container select, .form-container button {
+        input[type="text"], input[type="password"], input[type="number"] {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .page {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            background-color: #ccc;
+            display: inline-block;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 30px;
+            border-radius: 8px;
         }
     </style>
 </head>
 <body>
 
-<!-- Page 1: Home -->
-<div id="home">
-    <header>
-        <h1>Pilot Club</h1>
-        <nav>
-            <a href="javascript:showPage('login')">Login</a> | <a href="javascript:showPage('signup')">Create Account</a>
-        </nav>
-    </header>
-    <div class="social-icons">
-        <a href="https://wa.me" target="_blank">WhatsApp</a>
-        <a href="https://t.me" target="_blank">Telegram</a>
+    <!-- Page 1: Home -->
+    <div id="home" class="page active">
+        <header>
+            <h1>Pilot Club</h1>
+        </header>
+        <div class="container">
+            <button onclick="showPage('login')">Login</button>
+            <button onclick="showPage('signup')">Create Account</button>
+            <br><br>
+            <a href="https://wa.me/" target="_blank">WhatsApp</a> | 
+            <a href="https://t.me/" target="_blank">Telegram</a>
+        </div>
+        <footer>
+            <p>&copy; 2024 Pilot Club</p>
+        </footer>
     </div>
-    <div class="intro">
-        <p>Welcome to Pilot Club!</p>
-        <p>Create an account or login to start your journey.</p>
+
+    <!-- Page 2: Login -->
+    <div id="login" class="page">
+        <header>
+            <h1>Login</h1>
+        </header>
+        <div class="container">
+            <div class="form-container">
+                <form onsubmit="login(event)">
+                    <input type="text" id="login-username" placeholder="Username" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 Pilot Club</p>
+        </footer>
     </div>
-    <footer>
-        <p>&copy; 2024 Pilot Club</p>
-    </footer>
-</div>
 
-<!-- Page 2: Create Account -->
-<div id="signup" style="display: none;">
-    <header>
-        <h1>Create Account</h1>
-    </header>
-    <div class="form-container">
-        <form action="javascript:showPage('dashboard')" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Create Account</button>
-        </form>
+    <!-- Page 3: Signup -->
+    <div id="signup" class="page">
+        <header>
+            <h1>Create Account</h1>
+        </header>
+        <div class="container">
+            <div class="form-container">
+                <form onsubmit="createAccount(event)">
+                    <input type="text" id="signup-username" placeholder="Username" required>
+                    <input type="password" id="signup-password" placeholder="Password" required>
+                    <button type="submit">Create Account</button>
+                </form>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 Pilot Club</p>
+        </footer>
     </div>
-    <footer>
-        <p>&copy; 2024 Pilot Club</p>
-    </footer>
-</div>
 
-<!-- Page 3: Login -->
-<div id="login" style="display: none;">
-    <header>
-        <h1>Login</h1>
-    </header>
-    <div class="form-container">
-        <form action="javascript:showPage('dashboard')" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Login</button>
-        </form>
+    <!-- Page 4: Dashboard -->
+    <div id="dashboard" class="page">
+        <header>
+            <h1>Welcome, <span id="user-id">User</span></h1>
+        </header>
+        <div class="container">
+            <p>Balance: $<span id="balance">100</span></p>
+            <button onclick="showPage('deposit')">Deposit</button>
+            <button onclick="showPage('withdraw')">Withdraw</button>
+            <button onclick="showPage('game')">Play Game</button>
+        </div>
+        <footer>
+            <p>&copy; 2024 Pilot Club</p>
+        </footer>
     </div>
-    <footer>
-        <p>&copy; 2024 Pilot Club</p>
-    </footer>
-</div>
 
-<!-- Page 4: Dashboard (After Login/Signup) -->
-<div id="dashboard" style="display: none;">
-    <header>
-        <h1>Welcome, User!</h1>
-    </header>
-    <div class="user-info">
-        <p>User ID: 12345</p>
-        <p>Balance: $1000</p>
+    <!-- Page 5: Deposit -->
+    <div id="deposit" class="page">
+        <header>
+            <h1>Deposit</h1>
+        </header>
+        <div class="container">
+            <div class="form-container">
+                <input type="number" id="deposit-amount" placeholder="Enter amount" required>
+                <button onclick="processDeposit()">Deposit</button>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 Pilot Club</p>
+        </footer>
     </div>
-    <nav>
-        <a href="javascript:showPage('deposit')">Deposit</a> | <a href="javascript:showPage('withdraw')">Withdraw</a> | <a href="javascript:showPage('game')">Game</a>
-    </nav>
-    <footer>
-        <p>&copy; 2024 Pilot Club</p>
-    </footer>
-</div>
 
-<!-- Page 5: Deposit -->
-<div id="deposit" style="display: none;">
-    <header>
-        <h1>Deposit Funds</h1>
-    </header>
-    <div class="form-container">
-        <form action="javascript:showPage('dashboard')" method="POST">
-            <label for="deposit-amount">Amount to Deposit:</label>
-            <input type="number" id="deposit-amount" name="deposit-amount" required>
-            
-            <label for="wallet">Select Wallet:</label>
-            <select id="wallet" name="wallet">
-                <option value="paypal">PayPal</option>
-                <option value="crypto">Cryptocurrency</option>
-            </select>
-            
-            <button type="submit">Deposit</button>
-        </form>
+    <!-- Page 6: Withdraw -->
+    <div id="withdraw" class="page">
+        <header>
+            <h1>Withdraw</h1>
+        </header>
+        <div class="container">
+            <div class="form-container">
+                <input type="number" id="withdraw-amount" placeholder="Enter amount" required>
+                <button onclick="processWithdraw()">Withdraw</button>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 Pilot Club</p>
+        </footer>
     </div>
-    <footer>
-        <p>&copy; 2024 Pilot Club</p>
-    </footer>
-</div>
 
-<!-- Page 6: Withdraw -->
-<div id="withdraw" style="display: none;">
-    <header>
-        <h1>Withdraw Funds</h1>
-    </header>
-    <div class="form-container">
-        <form action="javascript:showPage('dashboard')" method="POST">
-            <label for="withdraw-amount">Amount to Withdraw:</label>
-            <input type="number" id="withdraw-amount" name="withdraw-amount" required>
-            
-            <label for="withdraw-method">Select Withdrawal Method:</label>
-            <select id="withdraw-method" name="withdraw-method">
-                <option value="paypal">PayPal</option>
-                <option value="bank">Bank Transfer</option>
-            </select>
-            
-            <button type="submit">Withdraw</button>
-        </form>
+    <!-- Page 7: Game -->
+    <div id="game" class="page">
+        <header>
+            <h1>Play the Game</h1>
+        </header>
+        <div class="container">
+            <div class="form-container">
+                <input type="number" id="bet-amount" placeholder="Enter your bet" required>
+                <div class="game-board">
+                    <div class="box" onclick="playGame(0)"></div>
+                    <div class="box" onclick="playGame(1)"></div>
+                    <div class="box" onclick="playGame(2)"></div>
+                    <div class="box" onclick="playGame(3)"></div>
+                </div>
+                <button onclick="playGame()">Play</button>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 Pilot Club</p>
+        </footer>
     </div>
-    <footer>
-        <p>&copy; 2024 Pilot Club</p>
-    </footer>
-</div>
 
-<!-- Page 7: Game -->
-<div id="game" style="display: none;">
-    <header>
-        <h1>Game Time!</h1>
-    </header>
-    <div class="game">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-    </div>
-    <label for="bet-amount">Place your bet:</label>
-    <input type="number" id="bet-amount" name="bet-amount">
-    
-    <button onclick="playGame()">Play Game</button>
-    
-    <footer>
-        <p>&copy; 2024 Pilot Club</p>
-    </footer>
-</div>
+    <script>
+        let user = { id: "User123", balance: 100 };
 
-<script>
-    function showPage(pageId) {
-        // Hide all pages
-        const pages = document.querySelectorAll("div[id]");
-        pages.forEach(page => page.style.display = "none");
-
-        // Show the selected page
-        document.getElementById(pageId).style.display = "block";
-    }
-
-    function playGame() {
-        let boxes = document.querySelectorAll(".box");
-        let randomBox = Math.floor(Math.random() * 4);
-        boxes[randomBox].innerText = "⚽";
-        let betAmount = document.getElementById("bet-amount").value;
-        if (randomBox === 0) {
-            alert("You Win! Double your bet: $" + betAmount * 2);
-        } else {
-            alert("You Lose! Try again.");
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            // Show the page with the given ID
+            document.getElementById(pageId).classList.add('active');
         }
-    }
 
-    // Show the home page by default
-    showPage('home');
+        function login(event) {
+            event.preventDefault();
+            // Simulate login logic
+            user.id = document.getElementById('login-username').value;
+            showPage('dashboard');
+            document.getElementById('user-id').innerText = user.id;
+            document.getElementById('balance').innerText = user.balance;
+        }
+
+        function createAccount(event) {
+            event.preventDefault();
+            // Simulate account creation
+            user.id = document.getElementById('signup-username').value;
+            user.balance = 100;
+            showPage('dashboard');
+            document.getElementById('user-id').innerText = user.id;
+            document.getElementById('balance').innerText = user.balance;
+        }
+
+        function processDeposit() {
+            let depositAmount = parseFloat(document.getElementById('deposit-amount').value);
+            user.balance += depositAmount;
+            alert('Deposit successful!');
+            document.getElementById('balance').innerText = user.balance;
+            showPage('dashboard');
+        }
+
+        function processWithdraw() {
+            let withdrawAmount = parseFloat(document.getElementById('withdraw-amount').value);
+            if (withdrawAmount <= user.balance) {
+                user.balance -= withdrawAmount;
+                alert('Withdrawal successful!');
+                document.getElementById('balance').innerText = user.balance;
+                showPage('dashboard');
+            } else {
+                alert('Insufficient funds');
+            }
+        }
+
+        function playGame(boxIndex) {
+            let boxes = document.querySelectorAll('.box');
+            let randomBox = Math.floor(Math.random() * 4);
+            boxes[randomBox].innerText = "⚽";  // Place the ball
+
+            let betAmount = document.getElementById('bet-amount').value;
+            if (randomBox === boxIndex) {
+                alert('You Win! You won $' + betAmount * 2);
+            } else {
+                alert('You Lose! Try again.');
+            }
+        }
+    </script>
+
+</body>
+</html>
+
 </script>
 
 </body>
