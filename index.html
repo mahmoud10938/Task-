@@ -10,35 +10,33 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            /* تغيير الخلفية إلى مزيج من الألوان */
-            background: linear-gradient(to right, #f8b400, #ff6347, #1e90ff);
+            /* تغيير الخلفية إلى مزيج جديد من الألوان */
+            background: linear-gradient(to right, #4e54c8, #8f94fb); /* تدرج من اللون الأرجواني */
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
-        header {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        /* تصميم المستطيل الذي يحتوي على اسم الموقع */
+        /* تصميم الشعار الذي في الجزء العلوي من الصفحة */
         .site-name-container {
-            background: linear-gradient(to right, #1e90ff, #ff6347); /* تدرج لوني */
+            background: linear-gradient(to right, #ff8c00, #ff6347); /* تدرج لوني دافئ */
             color: white;
             font-size: 50px;
             font-weight: bold;
             padding: 20px;
             border-radius: 10px;
-            display: inline-block;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
         }
 
         .container {
             width: 100%;
-            max-width: 400px;  /* تحديد أقصى عرض للمحتوى */
+            max-width: 400px;
             margin: auto;
             overflow: hidden;
         }
@@ -57,7 +55,7 @@
             color: white;
             border: none;
             padding: 10px 20px;
-            font-size: 14px; /* smaller button text */
+            font-size: 14px;
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
@@ -111,7 +109,7 @@
 <body>
 
     <header>
-        <!-- المستطيل الذي يحتوي على اسم الموقع -->
+        <!-- المستطيل الذي يحتوي على اسم الموقع أعلى الصفحة -->
         <div class="site-name-container">
             Pilot Club
         </div>
@@ -120,7 +118,6 @@
     <div class="container">
         <!-- Card for Create Account -->
         <div class="card">
-            <!-- فقط الكلمات أسفل الحقول -->
             <input type="text" class="input-field" placeholder="ID">
             <input type="password" class="input-field" placeholder="Password">
             <input type="password" class="input-field" placeholder="Confirm Password">
@@ -129,7 +126,6 @@
 
         <!-- Card for Login Account -->
         <div class="card">
-            <!-- فقط الكلمات أسفل الحقول -->
             <input type="text" class="input-field" placeholder="ID">
             <input type="password" class="input-field" placeholder="Password">
             <button>Login Account</button>
@@ -138,14 +134,12 @@
 
     <!-- إضافة أيقونات التواصل الاجتماعي -->
     <div class="social-icons">
-        <!-- رابط تليجرام مع صورة -->
         <a href="https://t.me/yourusername" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Telegram_logo.svg" alt="Telegram">
         </a>
     </div>
 
     <div class="whatsapp">
-        <!-- رابط واتساب مع صورة -->
         <a href="https://wa.me/yourphonenumber" target="_blank">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/WhatsApp.svg" alt="WhatsApp">
         </a>
