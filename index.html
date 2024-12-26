@@ -1,164 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pilot Club</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto:wght@700&family=Oswald:wght@400&family=Pacifico&display=swap" rel="stylesheet">
-    <style>
-        /* إعدادات الصفحة الرئيسية */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-        }
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #111; /* خلفية الموقع باللون الأسود الداكن */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white; /* اللون الأبيض للنصوص */
+}
 
-        /* تصميم اسم الموقع بخط فاخر مع اللون الأبيض أو الذهبي */
-        .site-name-container {
-            font-family: 'Cinzel', serif;
-            color: #f39c12;  /* اللون الذهبي لزيادة الفخامة */
-            font-size: 80px; /* زيادة حجم الخط */
-            font-weight: bold;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            margin-bottom: 40px; /* زيادة المسافة أسفل الاسم */
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* تأثير الظل الفاخر */
-            z-index: 9999; /* تأكيد أن النص في المقدمة */
-        }
+/* تصميم اسم الموقع */
+.site-name-container {
+    font-family: 'Pacifico', cursive;
+    color: #f39c12; /* اللون البرتقالي اللامع */
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* تأثير الظل للنص */
+}
 
-        /* تنسيق الحاوية العامة */
-        .container {
-            width: 100%;
-            max-width: 350px; /* جعل العرض مناسب لجميع الأجهزة مع تقليل الحجم */
-            margin: auto;
-            padding: 20px;
-        }
+/* تصميم الحاوية */
+.container {
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+    padding: 20px;
+}
 
-        /* تصميم البطاقات الخاصة بالحساب */
-        .card {
-            background-color: #2c3e50;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 20px 0;
-            text-align: center;
-            color: #ecf0f1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+/* تصميم البطاقة (Create Account & Login Account) */
+.card {
+    background-color: #2c3e50; /* خلفية البطاقة */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    text-align: center;
+    color: #ecf0f1; /* نص باللون الفاتح */
+}
 
-        /* تنسيق الحقول المدخلة */
-        .input-field {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 5px;
-            border: 1px solid #7f8c8d;
-            background-color: #34495e;
-            color: white;
-            font-size: 14px;
-        }
+/* الحقول المدخلة */
+.input-field {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #7f8c8d;
+    background-color: #34495e;
+    color: white;
+    font-size: 16px;
+}
 
-        .input-field:focus {
-            outline: none;
-            border-color: #f39c12;
-            background-color: #2c3e50;
-        }
+.input-field:focus {
+    outline: none;
+    border-color: #f39c12;
+    background-color: #2c3e50;
+}
 
-        /* تنسيق الأزرار */
-        button {
-            background-color: #f39c12;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
+/* تنسيق الأزرار */
+button {
+    background-color: #f39c12; /* اللون البرتقالي الزاهي */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
 
-        button:hover {
-            background-color: #e67e22;
-        }
+button:hover {
+    background-color: #e67e22; /* تغيير اللون عند التمرير */
+}
 
-        /* الأيقونات الاجتماعية */
-        .social-icons {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 9999;
-        }
+/* تنسيق الأيقونات الاجتماعية */
+.social-icons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+}
 
-        .social-icons a {
-            text-decoration: none;
-            margin: 10px;
-        }
+.social-icons a {
+    text-decoration: none;
+    margin: 10px;
+}
 
-        .social-icons img {
-            width: 50px;
-            height: 50px;
-            filter: invert(100%);
-        }
+.social-icons img {
+    width: 50px;
+    height: 50px;
+    filter: invert(100%);
+}
 
-        .whatsapp {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-        }
-
-    </style>
-</head>
-<body>
-
-    <header>
-        <!-- اسم الموقع مع التأثيرات الفاخرة -->
-        <div class="site-name-container">
-            Pilot Club
-        </div>
-    </header>
-
-    <div class="container">
-        <!-- Card for Create Account -->
-        <div class="card">
-            <h2>Create Account</h2>
-            <input type="text" class="input-field" placeholder="ID">
-            <input type="password" class="input-field" placeholder="Password">
-            <input type="password" class="input-field" placeholder="Confirm Password">
-            <button>Create Account</button>
-        </div>
-
-        <!-- Card for Login Account -->
-        <div class="card">
-            <h2>Login Account</h2>
-            <input type="text" class="input-field" placeholder="ID">
-            <input type="password" class="input-field" placeholder="Password">
-            <button>Login Account</button>
-        </div>
-    </div>
-
-    <!-- إضافة أيقونات التواصل الاجتماعي -->
-    <div class="social-icons">
-        <a href="https://t.me/yourusername" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Telegram_logo.svg" alt="Telegram" style="filter: invert(100%);">
-        </a>
-    </div>
-
-    <div class="whatsapp">
-        <a href="https://wa.me/yourphonenumber" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/WhatsApp.svg" alt="WhatsApp" style="filter: invert(100%);">
-        </a>
-    </div>
-
-</body>
-</html>
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
