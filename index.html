@@ -2,17 +2,22 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>CyberSec SPA</title>
+<title>CyberSec Demo - Full Interactive</title>
 <style>
-body { font-family: Arial; background:#f4f4f4; margin:0; padding:0;}
-nav { background:#333; color:#fff; padding:10px; text-align:center; }
-nav button { margin:0 10px; padding:5px 10px; cursor:pointer; }
-.page { display:none; padding:20px; }
-.active { display:block; }
-.card { background:#fff; padding:15px; margin:15px 0; box-shadow:0 2px 5px rgba(0,0,0,0.2); border-radius:5px; }
-button { background:#007BFF; color:#fff; border:none; padding:8px 15px; border-radius:4px; cursor:pointer; transition:0.3s; }
-button:hover { background:#0056b3; }
-input { padding:5px; margin:5px 0; width:100%; box-sizing:border-box; }
+  body { font-family: Arial; background:#f0f2f5; margin:0; padding:0; }
+  nav { background:#111; color:#fff; padding:15px; display:flex; justify-content:center; gap:20px; }
+  nav button { padding:10px 20px; border:none; border-radius:5px; cursor:pointer; background:#007BFF; color:#fff; transition:0.3s; }
+  nav button:hover { background:#0056b3; }
+  .page { display:none; padding:20px; min-height:80vh; }
+  .active { display:block; }
+  .card { background:#fff; padding:15px; margin:15px 0; box-shadow:0 4px 10px rgba(0,0,0,0.2); border-radius:10px; transition:0.3s; }
+  .card:hover { transform: translateY(-5px); box-shadow:0 8px 15px rgba(0,0,0,0.3); }
+  input, select { padding:10px; margin:5px 0; width:100%; box-sizing:border-box; border-radius:5px; border:1px solid #ccc; }
+  button.action { margin-top:10px; width:100%; background:#28a745; }
+  button.action:hover { background:#218838; }
+  h2,h3,h4 { margin:10px 0; }
+  ul { list-style:none; padding-left:0; }
+  li { background:#eee; margin:5px 0; padding:5px 10px; border-radius:5px; }
 </style>
 </head>
 <body>
@@ -23,43 +28,67 @@ input { padding:5px; margin:5px 0; width:100%; box-sizing:border-box; }
   <button onclick="showPage('shop')">Shop</button>
 </nav>
 
-<!-- Sign Up -->
+<!-- Sign Up Page -->
 <div id="signup" class="page active">
   <div class="card">
-    <h2>إنشاء حساب</h2>
-    <input type="text" id="username" placeholder="الاسم">
+    <h2>إنشاء حساب جديد</h2>
+    <input type="text" id="username" placeholder="الاسم الكامل">
     <input type="email" id="email" placeholder="البريد الإلكتروني">
     <input type="password" id="password" placeholder="كلمة المرور">
-    <button onclick="signup()">إنشاء حساب</button>
-    <p id="signupMsg"></p>
+    <button class="action" onclick="signup()">إنشاء الحساب</button>
+    <p id="signupMsg" style="color:green; margin-top:10px;"></p>
   </div>
 </div>
 
-<!-- Dashboard -->
+<!-- Dashboard / Articles -->
 <div id="dashboard" class="page">
+  <h2>المقالات</h2>
+
   <div class="card">
-    <h2>المقالات</h2>
-    <div class="card">
-      <h3>مقالة تجريبية 1</h3>
-      <p>هذا نص تجريبي للمقالة...</p>
-      <h4>التعليقات:</h4>
-      <ul id="comments"></ul>
-      <input type="text" id="commentInput" placeholder="اكتب تعليقك">
-      <button onclick="addComment()">أرسل التعليق</button>
-    </div>
+    <h3>مقالة تجريبية 1</h3>
+    <img src="https://via.placeholder.com/400x150" alt="Article Image" style="width:100%; border-radius:5px;">
+    <p>هذا نص تجريبي للمقالة، يمكنك تجربة التعليقات وXSS هنا.</p>
+    <h4>التعليقات:</h4>
+    <ul id="comments"></ul>
+    <input type="text" id="commentInput" placeholder="اكتب تعليقك هنا">
+    <button class="action" onclick="addComment()">أرسل التعليق</button>
+  </div>
+
+  <div class="card">
+    <h3>مقالة تجريبية 2</h3>
+    <img src="https://via.placeholder.com/400x150" alt="Article Image" style="width:100%; border-radius:5px;">
+    <p>مثال آخر لمقالة تجريبية، يمكن للطلاب تجربة XSS على التعليقات هنا.</p>
+    <h4>التعليقات:</h4>
+    <ul id="comments2"></ul>
+    <input type="text" id="commentInput2" placeholder="اكتب تعليقك هنا">
+    <button class="action" onclick="addComment2()">أرسل التعليق</button>
   </div>
 </div>
 
-<!-- Shop -->
+<!-- Shop Page -->
 <div id="shop" class="page">
+  <h2>متجر الكتب</h2>
+
   <div class="card">
-    <h2>شراء الكتب</h2>
+    <h3>كتاب تجريبي 1</h3>
+    <img src="https://via.placeholder.com/200x100" alt="Book Image" style="width:100%; border-radius:5px;">
     <input type="text" id="book" placeholder="اسم الكتاب">
     <input type="number" id="qty" placeholder="الكمية">
     <input type="text" id="buyerName" placeholder="اسمك">
-    <input type="text" id="card" placeholder="بطاقة الائتمان">
-    <button onclick="buyBook()">شراء</button>
-    <p id="shopMsg"></p>
+    <input type="text" id="card" placeholder="رقم بطاقة الائتمان">
+    <button class="action" onclick="buyBook()">شراء</button>
+    <p id="shopMsg" style="color:green; margin-top:10px;"></p>
+  </div>
+
+  <div class="card">
+    <h3>كتاب تجريبي 2</h3>
+    <img src="https://via.placeholder.com/200x100" alt="Book Image" style="width:100%; border-radius:5px;">
+    <input type="text" id="book2" placeholder="اسم الكتاب">
+    <input type="number" id="qty2" placeholder="الكمية">
+    <input type="text" id="buyerName2" placeholder="اسمك">
+    <input type="text" id="card2" placeholder="رقم بطاقة الائتمان">
+    <button class="action" onclick="buyBook2()">شراء</button>
+    <p id="shopMsg2" style="color:green; margin-top:10px;"></p>
   </div>
 </div>
 
@@ -69,20 +98,33 @@ function showPage(pageId){
   document.getElementById(pageId).classList.add('active');
 }
 
-// Dummy signup
+// Sign Up
 function signup(){
-  document.getElementById('signupMsg').textContent = "تم إنشاء الحساب بنجاح!";
-  setTimeout(()=>showPage('dashboard'),1000);
+  const username = document.getElementById('username').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  if(username && email && password){
+    document.getElementById('signupMsg').textContent = "تم إنشاء الحساب بنجاح!";
+    setTimeout(()=>showPage('dashboard'),1000);
+  } else {
+    document.getElementById('signupMsg').textContent = "الرجاء تعبئة جميع الحقول!";
+    document.getElementById('signupMsg').style.color='red';
+  }
 }
 
-// XSS demo
+// XSS Demo
 function addComment(){
   const val = document.getElementById('commentInput').value;
   document.getElementById('comments').innerHTML += `<li>${val}</li>`;
   document.getElementById('commentInput').value='';
 }
+function addComment2(){
+  const val = document.getElementById('commentInput2').value;
+  document.getElementById('comments2').innerHTML += `<li>${val}</li>`;
+  document.getElementById('commentInput2').value='';
+}
 
-// Shop demo
+// Shop Demo
 function buyBook(){
   const book = document.getElementById('book').value;
   const qty = document.getElementById('qty').value;
@@ -94,7 +136,19 @@ function buyBook(){
   document.getElementById('buyerName').value='';
   document.getElementById('card').value='';
 }
+
+function buyBook2(){
+  const book = document.getElementById('book2').value;
+  const qty = document.getElementById('qty2').value;
+  const name = document.getElementById('buyerName2').value;
+  const card = document.getElementById('card2').value;
+  document.getElementById('shopMsg2').textContent = `تم شراء ${qty} من ${book} بنجاح!`;
+  document.getElementById('book2').value='';
+  document.getElementById('qty2').value='';
+  document.getElementById('buyerName2').value='';
+  document.getElementById('card2').value='';
+}
 </script>
 
 </body>
-</html></html>
+  </html>
