@@ -1,106 +1,100 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>CyberSec Demo</title>
-  <style>
-    body { font-family: Arial; margin: 20px; }
-    .page { display: none; }
-    .active { display: block; }
-    input { margin: 5px 0; }
-    button { margin-top: 5px; }
-  </style>
+<meta charset="UTF-8">
+<title>CyberSec SPA</title>
+<style>
+body { font-family: Arial; background:#f4f4f4; margin:0; padding:0;}
+nav { background:#333; color:#fff; padding:10px; text-align:center; }
+nav button { margin:0 10px; padding:5px 10px; cursor:pointer; }
+.page { display:none; padding:20px; }
+.active { display:block; }
+.card { background:#fff; padding:15px; margin:15px 0; box-shadow:0 2px 5px rgba(0,0,0,0.2); border-radius:5px; }
+button { background:#007BFF; color:#fff; border:none; padding:8px 15px; border-radius:4px; cursor:pointer; transition:0.3s; }
+button:hover { background:#0056b3; }
+input { padding:5px; margin:5px 0; width:100%; box-sizing:border-box; }
+</style>
 </head>
 <body>
 
-<!-- Sign Up Page -->
-<div id="signupPage" class="page active">
-  <h2>إنشاء حساب</h2>
-  <form id="signupForm">
-    الاسم: <input type="text" id="username" required><br>
-    البريد الإلكتروني: <input type="email" id="email" required><br>
-    كلمة المرور: <input type="password" id="password" required><br>
-    <button type="submit">إنشاء حساب</button>
-  </form>
+<nav>
+  <button onclick="showPage('signup')">Sign Up</button>
+  <button onclick="showPage('dashboard')">Articles</button>
+  <button onclick="showPage('shop')">Shop</button>
+</nav>
+
+<!-- Sign Up -->
+<div id="signup" class="page active">
+  <div class="card">
+    <h2>إنشاء حساب</h2>
+    <input type="text" id="username" placeholder="الاسم">
+    <input type="email" id="email" placeholder="البريد الإلكتروني">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button onclick="signup()">إنشاء حساب</button>
+    <p id="signupMsg"></p>
+  </div>
 </div>
 
-<!-- Dashboard Page -->
-<div id="dashboardPage" class="page">
-  <h2>مرحبا بك في صفحة المقالات</h2>
-
-  <h3>المقالة الأولى</h3>
-  <p>هذا نص تجريبي للمقالة...</p>
-
-  <h4>التعليقات:</h4>
-  <ul id="comments"></ul>
-
-  <h4>أضف تعليقك:</h4>
-  <form id="commentForm">
-    <input type="text" id="comment" required>
-    <button type="submit">أرسل</button>
-  </form>
-
-  <br>
-  <button id="goShop">اذهب إلى متجر الكتب</button>
+<!-- Dashboard -->
+<div id="dashboard" class="page">
+  <div class="card">
+    <h2>المقالات</h2>
+    <div class="card">
+      <h3>مقالة تجريبية 1</h3>
+      <p>هذا نص تجريبي للمقالة...</p>
+      <h4>التعليقات:</h4>
+      <ul id="comments"></ul>
+      <input type="text" id="commentInput" placeholder="اكتب تعليقك">
+      <button onclick="addComment()">أرسل التعليق</button>
+    </div>
+  </div>
 </div>
 
-<!-- Shop Page -->
-<div id="shopPage" class="page">
-  <h2>شراء الكتب</h2>
-  <form id="shopForm">
-    اسم الكتاب: <input type="text" id="book" required><br>
-    الكمية: <input type="number" id="qty" required><br>
-    الاسم: <input type="text" id="buyerName" required><br>
-    بطاقة الائتمان: <input type="text" id="card" required><br>
-    <button type="submit">شراء</button>
-  </form>
+<!-- Shop -->
+<div id="shop" class="page">
+  <div class="card">
+    <h2>شراء الكتب</h2>
+    <input type="text" id="book" placeholder="اسم الكتاب">
+    <input type="number" id="qty" placeholder="الكمية">
+    <input type="text" id="buyerName" placeholder="اسمك">
+    <input type="text" id="card" placeholder="بطاقة الائتمان">
+    <button onclick="buyBook()">شراء</button>
+    <p id="shopMsg"></p>
+  </div>
 </div>
 
 <script>
-  // Navigation بين الصفحات
-  const signupPage = document.getElementById('signupPage');
-  const dashboardPage = document.getElementById('dashboardPage');
-  const shopPage = document.getElementById('shopPage');
+function showPage(pageId){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+}
 
-  const signupForm = document.getElementById('signupForm');
-  const commentForm = document.getElementById('commentForm');
-  const shopForm = document.getElementById('shopForm');
-  const goShopBtn = document.getElementById('goShop');
-  const commentList = document.getElementById('comments');
+// Dummy signup
+function signup(){
+  document.getElementById('signupMsg').textContent = "تم إنشاء الحساب بنجاح!";
+  setTimeout(()=>showPage('dashboard'),1000);
+}
 
-  // Sign Up
-  signupForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // هنا ممكن تضيف save dummy account
-    signupPage.classList.remove('active');
-    dashboardPage.classList.add('active');
-  });
+// XSS demo
+function addComment(){
+  const val = document.getElementById('commentInput').value;
+  document.getElementById('comments').innerHTML += `<li>${val}</li>`;
+  document.getElementById('commentInput').value='';
+}
 
-  // Comments (XSS demo)
-  commentForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const c = document.getElementById('comment').value;
-    commentList.innerHTML += `<li>${c}</li>`; // XSS demo
-    commentForm.reset();
-  });
-
-  // Navigate to Shop
-  goShopBtn.addEventListener('click', () => {
-    dashboardPage.classList.remove('active');
-    shopPage.classList.add('active');
-  });
-
-  // Shop form (SQLi demo)
-  shopForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const book = document.getElementById('book').value;
-    const qty = document.getElementById('qty').value;
-    const buyerName = document.getElementById('buyerName').value;
-    const card = document.getElementById('card').value;
-    alert(`تمت عملية شراء كتاب: ${book}\nكمية: ${qty}\nاسم: ${buyerName}\nبطاقة: ${card}`);
-    shopForm.reset();
-  });
+// Shop demo
+function buyBook(){
+  const book = document.getElementById('book').value;
+  const qty = document.getElementById('qty').value;
+  const name = document.getElementById('buyerName').value;
+  const card = document.getElementById('card').value;
+  document.getElementById('shopMsg').textContent = `تم شراء ${qty} من ${book} بنجاح!`;
+  document.getElementById('book').value='';
+  document.getElementById('qty').value='';
+  document.getElementById('buyerName').value='';
+  document.getElementById('card').value='';
+}
 </script>
 
 </body>
-</html>
+</html></html>
