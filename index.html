@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>CyberSec Demo</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    .page { display: none; }
+    .active { display: block; }
+    input { margin: 5px 0; }
+    button { margin-top: 5px; }
+  </style>
+</head>
+<body>
+
+<!-- Sign Up Page -->
+<div id="signupPage" class="page active">
+  <h2>إنشاء حساب</h2>
+  <form id="signupForm">
+    الاسم: <input type="text" id="username" required><br>
+    البريد الإلكتروني: <input type="email" id="email" required><br>
+    كلمة المرور: <input type="password" id="password" required><br>
+    <button type="submit">إنشاء حساب</button>
+  </form>
+</div>
+
+<!-- Dashboard Page -->
+<div id="dashboardPage" class="page">
+  <h2>مرحبا بك في صفحة المقالات</h2>
+
+  <h3>المقالة الأولى</h3>
+  <p>هذا نص تجريبي للمقالة...</p>
+
+  <h4>التعليقات:</h4>
+  <ul id="comments"></ul>
+
+  <h4>أضف تعليقك:</h4>
+  <form id="commentForm">
+    <input type="text" id="comment" required>
+    <button type="submit">أرسل</button>
+  </form>
+
+  <br>
+  <button id="goShop">اذهب إلى متجر الكتب</button>
+</div>
+
+<!-- Shop Page -->
+<div id="shopPage" class="page">
+  <h2>شراء الكتب</h2>
+  <form id="shopForm">
+    اسم الكتاب: <input type="text" id="book" required><br>
+    الكمية: <input type="number" id="qty" required><br>
+    الاسم: <input type="text" id="buyerName" required><br>
+    بطاقة الائتمان: <input type="text" id="card" required><br>
+    <button type="submit">شراء</button>
+  </form>
+</div>
+
+<script>
+  // Navigation بين الصفحات
+  const signupPage = document.getElementById('signupPage');
+  const dashboardPage = document.getElementById('dashboardPage');
+  const shopPage = document.getElementById('shopPage');
+
+  const signupForm = document.getElementById('signupForm');
+  const commentForm = document.getElementById('commentForm');
+  const shopForm = document.getElementById('shopForm');
+  const goShopBtn = document.getElementById('goShop');
+  const commentList = document.getElementById('comments');
+
+  // Sign Up
+  signupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // هنا ممكن تضيف save dummy account
+    signupPage.classList.remove('active');
+    dashboardPage.classList.add('active');
+  });
+
+  // Comments (XSS demo)
+  commentForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const c = document.getElementById('comment').value;
+    commentList.innerHTML += `<li>${c}</li>`; // XSS demo
+    commentForm.reset();
+  });
+
+  // Navigate to Shop
+  goShopBtn.addEventListener('click', () => {
+    dashboardPage.classList.remove('active');
+    shopPage.classList.add('active');
+  });
+
+  // Shop form (SQLi demo)
+  shopForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const book = document.getElementById('book').value;
+    const qty = document.getElementById('qty').value;
+    const buyerName = document.getElementById('buyerName').value;
+    const card = document.getElementById('card').value;
+    alert(`تمت عملية شراء كتاب: ${book}\nكمية: ${qty}\nاسم: ${buyerName}\nبطاقة: ${card}`);
+    shopForm.reset();
+  });
+</script>
+
+</body>
+</html>
